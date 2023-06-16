@@ -61,6 +61,26 @@ const {email,pass}=req.body
     }
 })
 
+userRouter.get("/allusers" ,async(req,res)=>{
+    try{
+        let allusers=await userModel.find()
+        res.status(200).send(allusers)
+
+    }catch(err){
+        res.status(400).send(err)
+    }
+})
+
+userRouter.delete("/delete/:id" ,async(req,res)=>{
+    const {id} = req.params
+    try{
+        await userModel.findByIdAndDelete({_id:id})
+        res.status(200).json({msg:"user account has been deleted"})
+    }catch(err){
+        res.status(400).json({err:err.message})
+    }
+})
+
 
 module.exports={
     userRouter
