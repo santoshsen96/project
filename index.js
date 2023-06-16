@@ -15,11 +15,13 @@ const { orderRouter } = require('./routes/order.routes')
 const { productRouter } = require('./routes/product.routes')
 const { auth } = require('./middleware/auth.middleware')
 const { adminProductRouter } = require('./routes/adminProduct.route')
+const { adminUserRouter } = require('./routes/adminUser.route')
 
 app.use("/users",userRouter)
 app.use("/product",productRouter)
 
 app.use("/adminproducts",adminProductRouter)
+app.use("/admin-auth",adminUserRouter)
 //app.use("/products_signature",productRouter)
 //app.use("/products_veg",productVegRouter)
 // app.use("/products_well",productWellRouter)
