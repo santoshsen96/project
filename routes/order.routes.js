@@ -2,8 +2,11 @@ const express=require("express")
 const jwt=require("jsonwebtoken")
 const {OrderModel}=require("../model/order.model")
 const {CartModel}=require("../model/cart.model")
+//const {auth}= require("../middleware/auth.middleware")
+
 
 const orderRouter=express.Router()
+//orderRouter.use(auth)
 
 orderRouter.post("/add",async(req,res)=>{
     const token=req.headers.authorization;
