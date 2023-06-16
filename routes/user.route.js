@@ -49,12 +49,12 @@ const {email,pass}=req.body
                     let token=jwt.sign({userID:user._id,user:user.name},'masai')
                     res.status(200).json({msg:"Login Successfull!!",token:token})
                 }else{
-                    res.status(200).json({msg:"Invalid Password !!"})
+                    res.status(400).json({msg:"Invalid Password !!"})
                 }
             });
            
         }else{
-            res.status(200).json({msg:"Invalid email !!"})
+            res.status(400).json({msg:"Invalid email !!"})
         }
     }catch(err){
         res.status(400).json({error:err.message})
