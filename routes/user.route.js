@@ -71,6 +71,8 @@ userRouter.get("/allusers" ,async(req,res)=>{
     }
 })
 
+
+
 userRouter.delete("/delete/:id" ,async(req,res)=>{
     const {id} = req.params
     try{
