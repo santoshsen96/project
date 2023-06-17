@@ -6,6 +6,16 @@ const jwt=require("jsonwebtoken")
 const { adminUserModel } = require("../model/adminUser.model")
 const dataBase=[]
 
+adminUserRouter.get("/",async(req,res)=>{
+    try{
+        let admin=await adminUserModel.find()
+        res.send(admin)
+
+    }catch(err){
+        res.send({error:err.message})
+    }
+})
+
 adminUserRouter.post("/register",async(req,res)=>{
     const {name,email,pass,image,role,description,location}=req.body
     const existingUser = dataBase.find((user) => user.email === email);
