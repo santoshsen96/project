@@ -44,4 +44,20 @@ orderRouter.get("/",async(req,res)=>{
     }
 })
 
+orderRouter.get("/allOrders",async(req,res)=>{
+    const token=req.headers.authorization;
+    const decoded = jwt.verify(token, 'masai');
+    try{
+        if(decoded){
+            let user=await OrderModel.find()
+            res.status(200).send(user)
+        }else{
+            res.status(400).send({msg:"please Login first!"})
+        }
+    }catch(err){
+        res.status(400).send({msg:err})
+    }
+})
+
+
 module.exports={orderRouter}
