@@ -44,16 +44,7 @@ orderRouter.get("/",async(req,res)=>{
     }
 })
 
-orderRouter.get("/allOrders",async(req,res)=>{
-    
-    try{
-            let user=await OrderModel.find()
-            res.status(200).send(user)
-        
-    }catch(err){
-        res.status(400).send({msg:err})
-    }
-})
+
 
 
 module.exports={orderRouter}

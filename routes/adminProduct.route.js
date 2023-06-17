@@ -1,8 +1,9 @@
 const express=require("express")
 const {ProductModel}=require("../model/product.model")
-const {auth} = require("../middleware/auth.middleware")
+const { OrderModel } = require("../model/order.model")
+//const {auth} = require("../middleware/auth.middleware")
 const adminProductRouter=express.Router()
-adminProductRouter.use(auth)
+//adminProductRouter.use(auth)
 
 
 adminProductRouter.get("/",async(req,res)=>{
@@ -44,6 +45,17 @@ adminProductRouter.delete("/delete/:id",async(req,res)=>{
         res.status(200).json({msg:"data has been deleted"})
     }catch(err){
         res.status(400).json({err:err.message})
+    }
+})
+
+adminProductRouter.get("/allOrders",async(req,res)=>{
+    
+    try{
+        let user=await OrderModel.find()
+        res.status(200).send(user)
+    
+    }catch(err){
+        res.status(400).send({msg:err})
     }
 })
 
