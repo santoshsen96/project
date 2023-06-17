@@ -12,10 +12,7 @@ adminUserRouter.post("/register",async(req,res)=>{
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists, Please Login !!' });
         }
-    const password = /^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!password.test(pass)) {
-        return res.status(400).json({ error: 'Invalid password. It should contain at least one number, one special character, and be at least 8 characters long.' });
-    }
+   
     try{
         bcrypt.hash(pass, 5, async(err, hash)=> {
             // Store hash in your password DB.
@@ -47,7 +44,7 @@ const {email,pass}=req.body
                 // result == true
                 if(result){
                     let token=jwt.sign({userID:user._id,user:user.name},'masai')
-                    res.status(200).json({msg:"Login Successfull!!",token:token})
+                    res.status(200).json({msg:"Login Successfull!!",token:token,user:req.body})
                 }else{
                     res.status(400).json({msg:"Invalid Password !!"})
                 }
