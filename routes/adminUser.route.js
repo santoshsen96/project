@@ -35,7 +35,7 @@ adminUserRouter.post("/register",async(req,res)=>{
 
 
 adminUserRouter.post("/login",async(req,res)=>{
-const {email,pass}=req.body
+const {name,email,pass}=req.body
     try{
         const user=await adminUserModel.findOne({email})
         
@@ -44,7 +44,7 @@ const {email,pass}=req.body
                 // result == true
                 if(result){
                     let token=jwt.sign({userID:user._id,user:user.name},'masai')
-                    res.status(200).json({msg:"Login Successfull!!",token:token,user:req.body})
+                    res.status(200).json({msg:"Login Successfull!!",token:token,user:req.body.name})
                 }else{
                     res.status(400).json({msg:"Invalid Password !!"})
                 }
