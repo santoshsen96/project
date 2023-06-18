@@ -29,9 +29,9 @@ const orderSchema=mongoose.Schema({
     card:{
         nameOnCard:String,
         cardType:String,
-        cardNumber:Number,
+        cardNumber:String,
         expiryDate:String,
-        cvv:Number
+        cvv:String
     }
 },{
     versionKey:false
