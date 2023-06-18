@@ -16,7 +16,9 @@ const orderSchema=mongoose.Schema({
     instruction_detail:Array,
     category:String,
     userID:String,
-    date:String
+    date:String,
+    address:Object,
+    card:Object
 },{
     versionKey:false
 })
