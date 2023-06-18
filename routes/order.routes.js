@@ -43,6 +43,47 @@ orderRouter.get("/",async(req,res)=>{
         res.status(400).send({msg:err})
     }
 })
+orderRouter.patch("/update/:cartID",async(req,res)=>{
+    const token=req.headers.authorization
+    const decoded=jwt.verify(token,"masai")
+    const req_id=decoded.userID
+    //console.log(req_id)
+    const {cartID}=req.params;
+    const cart=await OrderModel.findOne({_id:cartID})
+    const userID_in_cart=cart.userID
+    const payload=req.body;
+    try{
+        if(req_id==userID_in_cart){
+            await OrderModel.findByIdAndUpdate({_id:cartID},payload)
+            res.status(200).send({msg:"order product updated successfully!"})
+        }else{
+            res.status(400).send({msg:"Please login first!"})
+        }
+       
+    }catch(err){
+        res.status(400).send({msg:err})
+    }
+
+})
+
+
+   
+orderRouter.delete("/deleteallorder",async(req,res)=>{
+    const token=req.headers.authorization
+    const decoded=jwt.verify(token,"masai")
+    try{
+        if(decoded){
+            await OrderModel.deleteMany({userID:decoded.userID})
+            res.status(200).send({msg:"order allproduct deleted successfully!"})
+        }else{
+            res.status(400).send({msg:"Please login first!"})
+        }
+
+    }catch(err){
+        res.status(400).send({msg:err})
+    }
+})
+
 
 
 
