@@ -17,8 +17,22 @@ const orderSchema=mongoose.Schema({
     category:String,
     userID:String,
     date:String,
-    address:Object,
-    card:Object
+    address:{
+        name:String,
+        email:String,
+        address:String,
+        city:String,
+        nation:String,
+        contact:String,
+        state:String,
+    },
+    card:{
+        nameOnCard:String,
+        cardType:String,
+        cardNumber:Number,
+        expiryDate:String,
+        cvv:Number
+    }
 },{
     versionKey:false
 })
