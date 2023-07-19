@@ -17,7 +17,7 @@ const { auth } = require('./middleware/auth.middleware')
 const { adminProductRouter } = require('./routes/adminProduct.route')
 const { adminUserRouter } = require('./routes/adminUser.route')
 const { paymentRouter } = require('./routes/payment.route')
-
+const { Allorderadmin} =require('./routes/Adminallproduct')
 app.use("/users",userRouter)
 app.use("/product",productRouter)
 
@@ -26,7 +26,7 @@ app.use("/admin-auth",adminUserRouter)
 //app.use("/products_signature",productRouter)
 //app.use("/products_veg",productVegRouter)
 // app.use("/products_well",productWellRouter)
-
+app.use("/allorderadmin",Allorderadmin)
 app.use(auth)
 app.use("/cart",cartRouter)
 app.use("/order",orderRouter)
@@ -45,3 +45,5 @@ app.listen(process.env.port,async()=>{
     }
 
 })
+
+
